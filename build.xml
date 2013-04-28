@@ -27,7 +27,20 @@
 				<filename name="*symbol*" negate="true" />
 				<filename name="*times*" negate="true" />
 				<filename name="*zapfdingbats*" negate="true" />
+				<filename name="dejavusans*" negate="true" />
 			</fileset>
+		</delete>
+		
+		<move todir="${basedir}/fonts/fonts">
+			<fileset dir="${basedir}/tcpdf/fonts">
+				<filename name="dejavusans*"/>
+			</fileset>
+		</move>
+		
+		<delete>
+			<fileset dir="${basedir}/fonts/fonts" includes="**/dejavusansextralight*"/>
+			<fileset dir="${basedir}/fonts/fonts" includes="**/dejavusanscondensed*"/>
+			<fileset dir="${basedir}/fonts/fonts" includes="**/dejavusansmono*"/>
 		</delete>
 	</target>
 	
@@ -42,9 +55,15 @@
 		<echo>Component build</echo>
 
 		<move file="${basedir}/tcpdf.xml" tofile="${basedir}/tcpdf/tcpdf.xml" />		
-		<zip destfile="${buildDir}/lib_tcpdf.zip" basedir="${basedir}/tcpdf" />		
+		<move file="${basedir}/tcpdf_fonts.xml" tofile="${basedir}/fonts/tcpdf_fonts.xml" />
+		
+		<zip destfile="${buildDir}/lib_tcpdf.zip" basedir="${basedir}/tcpdf" />
+		<zip destfile="${buildDir}/lib_tcpdf_fonts.zip" basedir="${basedir}/fonts" />
+		
 		<move file="${basedir}/tcpdf/tcpdf.xml" tofile="${basedir}/tcpdf.xml" />
+		<move file="${basedir}/fonts/tcpdf_fonts.xml" tofile="${basedir}/tcpdf_fonts.xml" />
 				
 		<copy file="${buildDir}/lib_tcpdf.zip" tofile="C:/Users/${user.name}/Desktop/Trasf FTP/lib_tcpdf.zip" overwrite="true"/>
+		<copy file="${buildDir}/lib_tcpdf_fonts.zip" tofile="C:/Users/${user.name}/Desktop/Trasf FTP/lib_tcpdf_fonts.zip" overwrite="true"/>
 	</target>
 </project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension method="upgrade" type="file" version="2.5.0">
+  <name>TCPDF additional fonts</name>
+  <version>6.0.012</version>
+  <creationDate>2013-04-28</creationDate>
+  <author>Nicola Asuni / Davide Tampellini</author>
+  <authorUrl>Tecnick.com / www.fabbricabinaria.it</authorUrl>
+  <authorEmail>webmaster@fabbricabinaria.it</authorEmail>
+  <description><![CDATA[TCPDF additional fonts for Joomla!. <br/>
+  Please note that FabbricaBinaria has only created an installation package, all credit belongs to Nicola Asuni (www.teknick.com)]]>
+  </description>
+  
+  <fileset>
+	<files folder="fonts" target="libraries/tcpdf/fonts">
+		<filename>dejavusans.ctg.z</filename>
+		<filename>dejavusans.z</filename>
+		<filename>dejavusansb.ctg.z</filename>
+		<filename>dejavusansb.z</filename>
+		<filename>dejavusansbi.ctg.z</filename>
+		<filename>dejavusansbi.z</filename>
+		<filename>dejavusansi.ctg.z</filename>
+		<filename>dejavusansi.z</filename>
+		<filename>dejavusans.php</filename>
+		<filename>dejavusansb.php</filename>
+		<filename>dejavusansbi.php</filename>
+		<filename>dejavusansi.php</filename>
+	</files>
+  </fileset>
+</extension>
