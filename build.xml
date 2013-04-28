@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TCPDF" default="build" basedir=".">
+	<property name="buildDir"   value="${basedir}/build/"/>
+	
+	<target name="build" depends="cleanup, createLite, checkIndex, zip" />
+
+	<!-- Clean up the build directory output -->
+	<target name="cleanup">
+		<echo>Cleaning up build dir</echo>
+
+		<delete includeemptydirs="true">
+			<fileset dir="${buildDir}" includes="**/*"/>
+		</delete>
+	</target>
+
+	<target name="createLite">
+		<echo>Creazione della versione Lite (eliminazione file)</echo>
+		
+		<delete includeemptydirs="yes">
+			<fileset dir="${basedir}/tcpdf" includes="cache/*" />
+			<fileset dir="${basedir}/tcpdf" includes="examples/**" />
+			<fileset dir="${basedir}/tcpdf" includes="images/**" />
+			<fileset dir="${basedir}/tcpdf" includes="doc/**" />
+			<fileset dir="${basedir}/tcpdf/fonts">
+				<filename name="*courier*" negate="true" />
+				<filename name="*helvetica*" negate="true" />
+				<filename name="*symbol*" negate="true" />
+				<filename name="*times*" negate="true" />
+				<filename name="*zapfdingbats*" negate="true" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="checkIndex">
+		<exec executable="php.exe">
+			<arg value="${basedir}\checkProject.php" />
+		</exec>
+	</target>
+	
+	<!-- Create the extension package -->
+	<target name="zip">
+		<echo>Component build</echo>
+
+		<move file="${basedir}/tcpdf.xml" tofile="${basedir}/tcpdf/tcpdf.xml" />		
+		<zip destfile="${buildDir}/lib_tcpdf.zip" basedir="${basedir}/tcpdf" />		
+		<move file="${basedir}/tcpdf/tcpdf.xml" tofile="${basedir}/tcpdf.xml" />
+				
+		<copy file="${buildDir}/lib_tcpdf.zip" tofile="C:/Users/${user.name}/Desktop/Trasf FTP/lib_tcpdf.zip" overwrite="true"/>
+	</target>
+</project>
